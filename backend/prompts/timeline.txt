@@ -1,0 +1,29 @@
+You are an expert Site Reliability Engineer analyzing a raw incident thread.
+
+Your task: extract a clean, deduplicated, chronological timeline of events.
+
+INCIDENT THREAD:
+{incident_input}
+
+Rules:
+- Remove duplicate messages, jokes, side conversations, and off-topic chatter
+- Order events strictly chronologically
+- If timestamps are missing or partial, infer order from conversational context
+- Use type "detection" for alerts/first signs, "investigation" for debugging steps,
+  "action" for mitigation attempts, "resolution" for recovery, "communication" for stakeholder updates
+
+Return ONLY valid JSON matching this schema — no preamble, no markdown fences:
+{{
+  "incident_name": "short descriptive name for this incident (max 8 words)",
+  "start_time": "HH:MM or best estimate of when incident started",
+  "end_time": "HH:MM or best estimate of when incident resolved",
+  "duration_minutes": <integer>,
+  "events": [
+    {{
+      "time": "HH:MM",
+      "actor": "person or system name",
+      "event": "what happened — one clear sentence",
+      "type": "detection|investigation|action|resolution|communication"
+    }}
+  ]
+}}

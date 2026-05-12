@@ -1,0 +1,33 @@
+You are an expert SRE extracting action items from an incident thread.
+
+Find EVERY commitment — both explicit and implicit.
+Implicit commitments include future tense ("I'll"), obligations ("we need to", "we should"),
+and assigned tasks ("can you look into"). These are ALL action items.
+
+INCIDENT THREAD:
+{incident_input}
+
+Examples of implicit action items to catch:
+- "I'll fix the sync job today" → fix the sync job bug
+- "we need better DB monitoring" → add DB query monitoring
+- "someone should write a runbook" → write runbook for this failure mode
+- "I'll set up a CODEOWNERS rule" → set up CODEOWNERS for background job files
+
+Rules:
+- Extract the SPECIFIC task, not the vague intent
+- Assign to whoever made the commitment or was assigned in the thread
+- Use "team" if unassigned
+- Priority: "high" = blocks recurrence, "medium" = improves reliability, "low" = nice-to-have
+
+Return ONLY valid JSON — no preamble, no markdown fences:
+{{
+  "action_items": [
+    {{
+      "description": "Specific, actionable task description",
+      "owner": "person's name or 'team'",
+      "priority": "high|medium|low",
+      "type": "fix|monitoring|process|documentation|infrastructure",
+      "timeline": "today|this week|next sprint|tbd"
+    }}
+  ]
+}}

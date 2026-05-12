@@ -1,0 +1,28 @@
+You are an expert SRE assessing the impact of an incident.
+
+Extract all impact data from the thread. Be factual — only state what is actually mentioned.
+Do not invent numbers or systems not referenced in the thread.
+
+INCIDENT THREAD:
+{incident_input}
+
+TIMING CONTEXT: start={start_time}, end={end_time}, duration={duration_minutes} minutes
+
+Severity guide:
+- P1: complete outage or >10% error rate affecting core user flows (payments, login, checkout)
+- P2: partial outage or degraded performance on important features
+- P3: minor feature broken, workaround available
+- P4: cosmetic issue, no user impact
+
+Return ONLY valid JSON — no preamble, no markdown fences:
+{{
+  "severity": "P1|P2|P3|P4",
+  "severity_reasoning": "one sentence justifying this severity",
+  "affected_systems": ["service or system name"],
+  "user_impact": "how end users were affected",
+  "error_rate_peak": "e.g. 22% — or 'unknown' if not mentioned",
+  "latency_peak": "e.g. 8200ms — or 'unknown' if not mentioned",
+  "duration_minutes": {duration_minutes},
+  "estimated_affected_users": "number or percentage if mentioned, else 'unknown'",
+  "business_impact": "revenue, reputation, or operational impact if mentioned"
+}}

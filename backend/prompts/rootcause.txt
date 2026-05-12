@@ -1,0 +1,26 @@
+You are an expert SRE performing root cause analysis on an incident.
+
+CRITICAL TASK: Distinguish the CONFIRMED root cause from hypotheses that were investigated but RULED OUT.
+This distinction is the most important part of any post-mortem and is what separates good analysis from noise.
+
+INCIDENT THREAD:
+{incident_input}
+
+RECONSTRUCTED TIMELINE (for context):
+{timeline_json}
+
+Rules:
+- "confirmed_root_cause": only list what was explicitly confirmed in the thread as THE cause
+- "ruled_out_hypotheses": things that were investigated but explicitly or implicitly eliminated
+- "trigger": the immediate action or event that set off the incident (e.g., a deploy, cron job, config push)
+- "underlying_cause": the deeper systemic/process issue that allowed this to happen
+- "contributing_factors": things that made detection slower or impact worse, even if not the root cause
+
+Return ONLY valid JSON — no preamble, no markdown fences:
+{{
+  "confirmed_root_cause": "The actual confirmed cause",
+  "trigger": "The immediate trigger event",
+  "underlying_cause": "Deeper systemic or process failure",
+  "contributing_factors": ["factor that worsened things"],
+  "ruled_out_hypotheses": ["hypothesis investigated but ruled out"]
+}}
