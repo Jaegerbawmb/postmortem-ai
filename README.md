@@ -1,4 +1,4 @@
-# ⚡ PostMortem AI — Incident Report Drafter
+#  PostMortem AI — Incident Report Drafter
 
 > Paste a chaotic Slack thread or raw incident log. Get back a complete, structured post-mortem report in under 60 seconds.
 
@@ -147,10 +147,11 @@ postmortem-ai/
 ### Backend
 
 ```bash
+python -m venv venv
+pip install -r requirements.txt
 cd backend
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
+venv\Scripts\activate
 
 cp .env.example .env
 # Edit .env and add your GEMINI_API_KEY
