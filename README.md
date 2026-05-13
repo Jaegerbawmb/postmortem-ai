@@ -21,6 +21,9 @@ Writing this is painful:
 
 **PostMortem AI solves this.** Paste the raw thread. Get a complete, structured post-mortem ready to send to stakeholders.
 
+<img width="1550" height="776" alt="image" src="https://github.com/user-attachments/assets/c4e2ade3-5635-4a15-956e-e3c027403491" />
+<img width="1540" height="778" alt="image" src="https://github.com/user-attachments/assets/815482cd-c662-4120-ac7f-f63bf2acf28a" />
+
 ---
 
 ## Architecture: 5-Stage LLM Pipeline
@@ -185,6 +188,10 @@ Every generated report includes:
 6. **Lessons Learned** — what went well, what went poorly, and key takeaways
 
 Reports export to **Markdown** with one click.
+
+<img width="1536" height="787" alt="image" src="https://github.com/user-attachments/assets/a3d08e59-ade6-4723-93bf-808850033f8f" />
+<img width="898" height="522" alt="image" src="https://github.com/user-attachments/assets/58fa2120-f46e-426c-a194-d7bc130d74ee" />
+<img width="907" height="626" alt="image" src="https://github.com/user-attachments/assets/53642717-fdb6-4bbd-a6aa-808a18a500f1" />
 
 ---
 
