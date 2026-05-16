@@ -13,7 +13,7 @@
 
 Every software company experiences incidents. After every incident, engineers must write a **post-mortem** — a structured document capturing the timeline, root cause, impact, and action items.
 
-Writing this is painful:
+Now, writing this is tiring.
 - The engineer is exhausted from firefighting
 - The Slack thread is chaotic — jokes, dead ends, duplicate messages, overlapping conversations
 - Post-mortems get written days later from fading memory
@@ -72,7 +72,7 @@ Raw Incident Thread
          Complete Post-Mortem Report (6 sections)
 ```
 
-### Why This Is Non-Trivial
+### What makes this special:
 
 **The ruled-out hypotheses problem:** During an incident, engineers investigate and discard many theories. A naive summarisation conflates these dead-ends with the actual root cause. Stage 2 is explicitly prompted to distinguish `confirmed_root_cause` from `ruled_out_hypotheses` — a critical distinction most tools miss entirely.
 
