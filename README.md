@@ -1,4 +1,4 @@
-# ⚡ PostMortem AI — Incident Report Drafter
+#  PostMortem AI — Incident Report Drafter
 
 > Paste a chaotic Slack thread or raw incident log. Get back a complete, structured post-mortem report in under 60 seconds.
 
@@ -13,13 +13,16 @@
 
 Every software company experiences incidents. After every incident, engineers must write a **post-mortem** — a structured document capturing the timeline, root cause, impact, and action items.
 
-Writing this is painful:
+Now, writing this is tiring.
 - The engineer is exhausted from firefighting
 - The Slack thread is chaotic — jokes, dead ends, duplicate messages, overlapping conversations
 - Post-mortems get written days later from fading memory
 - Action items get missed; root cause analysis conflates dead-ends with the actual cause
 
 **PostMortem AI solves this.** Paste the raw thread. Get a complete, structured post-mortem ready to send to stakeholders.
+
+<img width="1550" height="776" alt="image" src="https://github.com/user-attachments/assets/c4e2ade3-5635-4a15-956e-e3c027403491" />
+<img width="1540" height="778" alt="image" src="https://github.com/user-attachments/assets/815482cd-c662-4120-ac7f-f63bf2acf28a" />
 
 ---
 
@@ -69,7 +72,7 @@ Raw Incident Thread
          Complete Post-Mortem Report (6 sections)
 ```
 
-### Why This Is Non-Trivial
+### What makes this special:
 
 **The ruled-out hypotheses problem:** During an incident, engineers investigate and discard many theories. A naive summarisation conflates these dead-ends with the actual root cause. Stage 2 is explicitly prompted to distinguish `confirmed_root_cause` from `ruled_out_hypotheses` — a critical distinction most tools miss entirely.
 
@@ -147,10 +150,11 @@ postmortem-ai/
 ### Backend
 
 ```bash
+python -m venv venv
+pip install -r requirements.txt
 cd backend
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
+venv\Scripts\activate
 
 cp .env.example .env
 # Edit .env and add your GEMINI_API_KEY
@@ -184,6 +188,10 @@ Every generated report includes:
 6. **Lessons Learned** — what went well, what went poorly, and key takeaways
 
 Reports export to **Markdown** with one click.
+
+<img width="1536" height="787" alt="image" src="https://github.com/user-attachments/assets/a3d08e59-ade6-4723-93bf-808850033f8f" />
+<img width="898" height="522" alt="image" src="https://github.com/user-attachments/assets/58fa2120-f46e-426c-a194-d7bc130d74ee" />
+<img width="907" height="626" alt="image" src="https://github.com/user-attachments/assets/53642717-fdb6-4bbd-a6aa-808a18a500f1" />
 
 ---
 
