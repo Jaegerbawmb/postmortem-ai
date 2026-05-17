@@ -2,28 +2,28 @@ import React, { useState } from 'react'
 
 const SAMPLE = `[09:47] pagerduty-bot: 🔴 CRITICAL - checkout-service error rate > 15% (threshold: 2%)
 [09:47] pagerduty-bot: 🔴 CRITICAL - payment-api p99 latency 8200ms (threshold: 2000ms)
-[09:48] @alex.chen: on it, pulling up dashboards
-[09:49] @sarah.k: I'm seeing DB connection pool exhaustion in the logs
-[09:50] @alex.chen: yeah I see it too. Could be the migration we ran at 9:30?
-[09:51] @mike.t: or the new connection pooler config we deployed yesterday?
-[09:52] @sarah.k: checking the migration — it added 3 new indexes, shouldn't cause this
-[09:53] @alex.chen: payments are failing for users, seeing reports in #customer-reports
-[09:54] @mike.t: rolled back the connection pooler config
-[09:55] @alex.chen: error rate still climbing, 22% now
-[09:56] @sarah.k: wait — RDS instance CPU at 98%. Something is hammering the DB
-[09:57] @alex.chen: found it. The background job that syncs order history to the data warehouse is doing a full table scan every 5 minutes instead of incremental
-[09:58] @alex.chen: PR #4821 merged yesterday at 2pm. Removed the WHERE clause accidentally
-[09:59] @sarah.k: killing the sync job now
-[10:00] @alex.chen: error rate dropping... 18%... 9%... 3%...
-[10:01] @alex.chen: we're back. Error rate 1.2%, latency normalizing
+[09:48] @ravi.: on it, pulling up dashboards
+[09:49] @sonali.k: I'm seeing DB connection pool exhaustion in the logs
+[09:50] @pranav.lele: yeah I see it too. Could be the migration we ran at 9:30?
+[09:51] @om.t: or the new connection pooler config we deployed yesterday?
+[09:52] @sonali.k: checking the migration — it added 3 new indexes, shouldn't cause this
+[09:53] @pranav.lele: payments are failing for users, seeing reports in #customer-reports
+[09:54] @om.t: rolled back the connection pooler config
+[09:55] @pranav.lele: error rate still climbing, 22% now
+[09:56] @sonali.k: wait — RDS instance CPU at 98%. Something is hammering the DB
+[09:57] @pranav.lele: found it. The background job that syncs order history to the data warehouse is doing a full table scan every 5 minutes instead of incremental
+[09:58] @pranav.lele: PR #4821 merged yesterday at 2pm. Removed the WHERE clause accidentally
+[09:59] @sonali.k: killing the sync job now
+[10:00] @pranav.lele: error rate dropping... 18%... 9%... 3%...
+[10:01] @sonali.k: we're back. Error rate 1.2%, latency normalizing
 [10:02] pagerduty-bot: ✅ RESOLVED - checkout-service error rate 1.2%
 [10:02] pagerduty-bot: ✅ RESOLVED - payment-api p99 latency 890ms
-[10:04] @mike.t: incident duration was ~17 minutes. Need a post-mortem
-[10:05] @sarah.k: I'll fix the sync job today and add a guard against full table scans
-[10:06] @alex.chen: we should add a runbook for DB CPU spikes
+[10:04] @om.t: incident duration was ~17 minutes. Need a post-mortem
+[10:05] @sonali.k: I'll fix the sync job today and add a guard against full table scans
+[10:06] @pranav.lele: we should add a runbook for DB CPU spikes
 [10:07] @mike.t: we need better PR review for anything touching background jobs — I'll set up a CODEOWNERS rule
-[10:08] @sarah.k: also why did it take 10 minutes to find the root cause? We need better DB query monitoring
-[10:09] @alex.chen: agreed. I'll look into adding pg_stat_statements to our dashboards this week`
+[10:08] @sonali.k: also why did it take 10 minutes to find the root cause? We need better DB query monitoring
+[10:09] @om.t: agreed. I'll look into adding pg_stat_statements to our dashboards this week`
 
 export default function IncidentInput({ onGenerate, disabled }) {
   const [value, setValue] = useState('')
