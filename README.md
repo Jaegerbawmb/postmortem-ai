@@ -21,8 +21,8 @@ Now, writing this is tiring.
 
 **PostMortem AI solves this.** Paste the raw thread. Get a complete, structured post-mortem ready to send to stakeholders.
 
-<img width="1550" height="776" alt="image" src="https://github.com/user-attachments/assets/c4e2ade3-5635-4a15-956e-e3c027403491" />
-<img width="1540" height="778" alt="image" src="https://github.com/user-attachments/assets/815482cd-c662-4120-ac7f-f63bf2acf28a" />
+<img width="1837" height="848" alt="image" src="https://github.com/user-attachments/assets/8f968390-731f-43d8-ad73-a2f3e563a9aa" />
+
 
 ---
 
