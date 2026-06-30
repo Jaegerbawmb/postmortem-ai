@@ -9,10 +9,10 @@ export const STAGES = [
 ]
 
 const initialStageState = () =>
-  Object.fromEntries(STAGES.map(s => [s.id, 'idle'])) // idle | running | done
+  Object.fromEntries(STAGES.map(s => [s.id, 'idle']))
 
 export function usePipeline() {
-  const [status, setStatus] = useState('idle') // idle | running | done | error
+  const [status, setStatus] = useState('idle')
   const [stageStates, setStageStates] = useState(initialStageState())
   const [currentStage, setCurrentStage] = useState(0)
   const [progress, setProgress] = useState(0)
@@ -34,11 +34,10 @@ export function usePipeline() {
     reset()
     setStatus('running')
 
-    // Accumulated stage data as it arrives
     const acc = {}
 
     try {
-      const response = await fetch('/generate', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ incident_input: incidentInput }),
@@ -59,7 +58,7 @@ export function usePipeline() {
 
         buffer += decoder.decode(value, { stream: true })
         const lines = buffer.split('\n')
-        buffer = lines.pop() // keep incomplete line
+        buffer = lines.pop()
 
         for (const line of lines) {
           if (!line.startsWith('data: ')) continue
@@ -79,7 +78,6 @@ export function usePipeline() {
           setProgress(pct)
           setProgressLabel(label)
 
-          // Mark previous stages done, current running
           setStageStates(prev => {
             const next = { ...prev }
             for (let i = 1; i < stage; i++) next[i] = 'done'
@@ -87,10 +85,8 @@ export function usePipeline() {
             return next
           })
 
-          // Merge incoming data into accumulator
           if (data) Object.assign(acc, data)
 
-          // Final event
           if (data?.complete) {
             setStageStates(prev =>
               Object.fromEntries(Object.keys(prev).map(k => [k, 'done']))
